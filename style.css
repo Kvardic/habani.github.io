@@ -62,6 +62,12 @@
     overflow: hidden;
 }
 
+#sidebar-content
+{
+    margin: 20px;
+    font-family: sans-serif;
+}
+
 .leaflet-control-defaultextent-toggle {
     background-image: url('extentIcon.svg');
 }
@@ -70,3 +76,31 @@
     border-color: transparent;
     top: -6px;
   }
+
+*:focus {
+    outline: 0;
+}
+
+#legend {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#legend-element {
+    display: flex;
+    font-size: 12px;
+}
+
+#legend-text {
+    margin: 0;
+    padding-left: 10px;
+    line-height: 20px;
+}
+
+#hide-dwellings {
+    display: none;
+}
+
+#hide-settlements {
+    display: block;
+}

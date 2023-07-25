@@ -24,13 +24,13 @@ const settlementsIconNotPresent = L.icon({
     iconSize: [10, 10]
 });
 
-const settlements = "https://gist.githubusercontent.com/VGE-lab-MUNI/54c20ac7bfad5f260631e39f49bd0b74/raw/3e1ee71ce5195ca96506bb2013da7296b1250d62/hutter_points.geojson";
+const settlements = "https://gist.githubusercontent.com/VGE-lab-MUNI/54c20ac7bfad5f260631e39f49bd0b74/raw/2998a9a831db6f048ade20a2f304177981c807f9/hutter_points.geojson";
 
 const dwellings = "https://gist.githubusercontent.com/VGE-lab-MUNI/6a04baa6f4b6ad6525c208fdcacd608e/raw/a9187314740772563fc88e05b0387e0a4b2dab10/hutter.geojson"
     
-var hutteritesDwellings = new L.GeoJSON.AJAX(dwellings, {style: dwellingsStyle});
+var hutteritesDwellings = new L.GeoJSON.AJAX(dwellings, {style: dwellingsStyle, onEachFeature: nameDisplayDwellings});
 
-var hutteritesSettlements = new L.GeoJSON.AJAX(settlements, {pointToLayer: markerDisplay, onEachFeature: nameDisplay}).addTo(map);
+var hutteritesSettlements = new L.GeoJSON.AJAX(settlements, {pointToLayer: markerDisplay, onEachFeature: nameDisplaySettlements}).addTo(map);
 
 function dwellingsStyle(feature) {
     if (feature.properties.Certainty == 1) {
@@ -81,7 +81,7 @@ function markerDisplay(feature, latlng) {
     }
 }
 
-function nameDisplay(feature, layer) {
+function nameDisplaySettlements(feature, layer) {
     if (feature.properties.Dwellings == "N") {
         label = "<center>" + "<b>" + String(feature.properties.Settlement);
     } else {
@@ -90,35 +90,48 @@ function nameDisplay(feature, layer) {
     layer.bindTooltip(label, {className: "my-labels", direction: "top"});
 };
 
+function nameDisplayDwellings(feature, layer) {
+   
+    label = "<center>" + "<b>" + String(feature.properties.Dwelling) + "<br>" + "Jistota lokalizace: " + "</b>" + String(feature.properties.Certainty);
+    
+    layer.bindTooltip(label, {className: "my-labels", direction: "top"});
+};
+
 
 
 map.on('zoomend', function(){
+    var element = document.getElementById("hide-dwellings");
     if (map.getZoom() > 13) 
         
         {
             map.addLayer(hutteritesDwellings);
+            element.style.display = "block";
         } 
     
         else
             
         {
             map.removeLayer(hutteritesDwellings);
+            element.style.display = "none";
         }
     }
 );
 
 
 map.on('zoomend', function(){
+    var element = document.getElementById("hide-settlements");
     if (map.getZoom() > 13) 
         
         {
             map.removeLayer(hutteritesSettlements);
+            element.style.display = "none";
         } 
     
         else
             
         {
             map.addLayer(hutteritesSettlements);
+            element.style.display = "block";
         }
     }
 );
