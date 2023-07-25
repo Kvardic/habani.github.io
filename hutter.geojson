@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "hutter",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Id": 0 }, "geometry": { "type": "Point", "coordinates": [ 14.035073541626424, 49.846118815639002, 0.0 ] } },
+{ "type": "Feature", "properties": { "Id": 0 }, "geometry": { "type": "Point", "coordinates": [ 14.841048061098622, 49.468298799071853, 0.0 ] } },
+{ "type": "Feature", "properties": { "Id": 0 }, "geometry": { "type": "Point", "coordinates": [ 16.647542675536371, 49.359811140911987, 0.0 ] } },
+{ "type": "Feature", "properties": { "Id": 0 }, "geometry": { "type": "Point", "coordinates": [ 16.11949040381727, 50.292084671700415, 0.0 ] } },
+{ "type": "Feature", "properties": { "Id": 0 }, "geometry": { "type": "Point", "coordinates": [ 15.063385860379103, 50.522349596406919, 0.0 ] } }
+]
+}
